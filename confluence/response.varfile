@@ -1,0 +1,9 @@
+rmiPort$Long=8000
+app.install.service$Boolean=true
+sys.confirmedUpdateInstallationString=false
+sys.languageId=en
+sys.installationDir=/atlassian/confluence
+app.confHome=/atlassian/application-data/confluence
+executeLauncherAction$Boolean=true
+httpPort$Long=8090
+portChoice=default
