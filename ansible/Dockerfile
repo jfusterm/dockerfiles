@@ -8,6 +8,7 @@ RUN set -ex && \
     apk add --no-cache $buildDeps python py-pip ca-certificates bash && \
     pip install --upgrade pip && \
     pip install ansible==${ANSIBLE_VERSION} && \
-    apk del --purge $buildDeps
+    apk del --purge $buildDeps && \
+    apk upgrade --no-cache
 
 CMD ["ansible"]
