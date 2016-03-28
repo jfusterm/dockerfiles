@@ -1,8 +1,8 @@
 FROM jfusterm/alpine-glibc:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV INFLUXDB_VERSION=0.10.3 \
-    INFLUXDB_MD5=d3bff79076cadd3a179a2778d048ef6c
+ENV INFLUXDB_VERSION=0.11.0 \
+    INFLUXDB_MD5=89409bb9614bd1b99b60daf04a3776b9
 
 RUN addgroup -S influxdb && adduser -S -G influxdb influxdb && \
     apk add --no-cache openssl ca-certificates tar curl && \
