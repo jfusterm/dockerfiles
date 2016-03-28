@@ -1,9 +1,9 @@
 FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV CONSUL_VERSION=0.6.3 \
-    CONSUL_SHA256=b0532c61fec4a4f6d130c893fd8954ec007a6ad93effbe283a39224ed237e250 \
-    CONSUL_UI_SHA256=93bbb300cacfe8de90fb3bd5ede7d37ae6ce014898edc520b9c96a676b2bbb72
+ENV CONSUL_VERSION=0.6.4 \
+    CONSUL_SHA256=abdf0e1856292468e2c9971420d73b805e93888e006c76324ae39416edcf0627 \
+    CONSUL_UI_SHA256=5f8841b51e0e3e2eb1f1dc66a47310ae42b0448e77df14c83bb49e0e0d5fa4b7
 
 RUN addgroup -S consul && adduser -S -G consul consul && \
     apk add --no-cache ca-certificates openssl curl && \
