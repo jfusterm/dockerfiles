@@ -1,9 +1,10 @@
 FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV NGINX_VERSION=1.9.12
+ENV NGINX_VERSION=1.9.13
 
-RUN addgroup -S nginx && adduser -S -G nginx nginx && \
+RUN addgroup -S nginx && \
+    adduser -S -D -s /sbin/nologin -G nginx nginx && \
     buildDeps="build-base libaio-dev pcre-dev openssl-dev linux-headers gnupg zlib-dev" && \
     apk add --no-cache $buildDeps pcre openssl ca-certificates && \
     wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
@@ -11,11 +12,7 @@ RUN addgroup -S nginx && adduser -S -G nginx nginx && \
     gpg --keyserver pgpkeys.mit.edu --recv-key A1C052F8 && \
     gpg --verify nginx-${NGINX_VERSION}.tar.gz.asc && \
     rm -r ~/.gnupg && \
-    mkdir -p /nginx/etc && \
-    mkdir /nginx/cache && \
-    mkdir /nginx/log && \
-    mkdir /nginx/run && \
-    mkdir /html && \
+    mkdir -p /nginx/tmp && \
     tar xzf nginx-${NGINX_VERSION}.tar.gz && \
     cd nginx-${NGINX_VERSION} && \
     ./configure \
@@ -26,11 +23,11 @@ RUN addgroup -S nginx && adduser -S -G nginx nginx && \
        --http-log-path=/nginx/log/access.log \
        --pid-path=/nginx/run/nginx.pid \
        --lock-path=/nginx/run/nginx.lock \
-       --http-client-body-temp-path=/nginx/cache/client_temp \
-       --http-proxy-temp-path=/nginx/cache/proxy_temp \
-       --http-fastcgi-temp-path=/nginx/cache/fastcgi_temp \
-       --http-uwsgi-temp-path=/nginx/cache/uwsgi_temp \
-       --http-scgi-temp-path=/nginx/cache/scgi_temp \
+       --http-client-body-temp-path=/nginx/tmp/client \
+       --http-proxy-temp-path=/nginx/tmp/proxy \
+       --http-fastcgi-temp-path=/nginx/tmp/fastcgi \
+       --http-uwsgi-temp-path=/nginx/tmp/uwsgi \
+       --http-scgi-temp-path=/nginx/tmp/scgi \
        --with-threads \
        --with-stream \
        --with-stream_ssl_module \
@@ -62,7 +59,5 @@ RUN addgroup -S nginx && adduser -S -G nginx nginx && \
     apk del --purge $buildDeps
 
 EXPOSE 80 443
-
-VOLUME ["/nginx"]
 
 CMD ["nginx" ,"-g" ,"daemon off;"]
