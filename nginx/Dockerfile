@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV NGINX_VERSION=1.9.13
+ENV NGINX_VERSION=1.9.14
 
 RUN addgroup -S nginx && \
     adduser -S -D -s /sbin/nologin -G nginx nginx && \
