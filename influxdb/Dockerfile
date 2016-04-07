@@ -1,8 +1,8 @@
 FROM jfusterm/alpine-glibc:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV INFLUXDB_VERSION=0.11.0 \
-    INFLUXDB_MD5=89409bb9614bd1b99b60daf04a3776b9
+ENV INFLUXDB_VERSION=0.12.0 \
+    INFLUXDB_MD5=4f10ac32d659623dc88e2da9096b41c1
 
 RUN addgroup -S influxdb && adduser -S -G influxdb influxdb && \
     apk add --no-cache openssl ca-certificates tar curl && \
@@ -10,7 +10,7 @@ RUN addgroup -S influxdb && adduser -S -G influxdb influxdb && \
     echo "${INFLUXDB_MD5}  influxdb.tar.gz" | md5sum -c && \
     mkdir -p /influxdb/etc && \
     mkdir /influxdb/ssl && \
-    tar xzf influxdb.tar.gz -C /usr/local/bin "./influxdb-${INFLUXDB_VERSION}-1/usr/bin/" --strip-components=4 && \
+    tar xzf influxdb.tar.gz -C /usr/local/bin "./usr/bin/" --strip-components=3 && \
     rm -f influxdb.tar.gz && \
     apk del --purge tar curl && \
     chown -R influxdb:influxdb /influxdb

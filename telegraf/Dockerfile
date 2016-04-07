@@ -1,8 +1,8 @@
 FROM jfusterm/alpine-glibc:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV TELEGRAF_VERSION=0.11.1 \
-    TELEGRAF_MD5=fda810619011938d43f7a16b1ae4deef
+ENV TELEGRAF_VERSION=0.12.0 \
+    TELEGRAF_MD5=e44b7c959d168ef03f4e8f2854384a77
 
 RUN addgroup -S telegraf && adduser -S -G telegraf telegraf && \
     apk add --no-cache ca-certificates && \
