@@ -5,8 +5,8 @@ ENV NGINX_VERSION=1.9.14
 
 RUN addgroup -S nginx && \
     adduser -S -D -s /sbin/nologin -G nginx nginx && \
-    buildDeps="build-base libaio-dev pcre-dev openssl-dev linux-headers gnupg zlib-dev" && \
-    apk add --no-cache $buildDeps pcre openssl ca-certificates && \
+    buildDeps="build-base libaio-dev pcre-dev openssl-dev linux-headers gnupg zlib-dev geoip-dev" && \
+    apk add --no-cache $buildDeps pcre openssl ca-certificates geoip && \
     wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
     wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz.asc && \
     gpg --keyserver pgpkeys.mit.edu --recv-key A1C052F8 && \
@@ -39,6 +39,7 @@ RUN addgroup -S nginx && \
        --with-ipv6 \
        --with-http_ssl_module \
        --with-http_realip_module \
+       --with-http_geoip_module \
        --with-http_addition_module \
        --with-http_sub_module \
        --with-http_dav_module \
