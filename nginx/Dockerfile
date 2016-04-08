@@ -3,6 +3,8 @@ MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
 ENV NGINX_VERSION=1.9.14
 
+COPY conf/entrypoint.sh /
+
 RUN addgroup -S nginx && \
     adduser -S -D -s /sbin/nologin -G nginx nginx && \
     buildDeps="build-base libaio-dev pcre-dev openssl-dev linux-headers gnupg zlib-dev geoip-dev" && \
@@ -13,6 +15,7 @@ RUN addgroup -S nginx && \
     gpg --verify nginx-${NGINX_VERSION}.tar.gz.asc && \
     rm -r ~/.gnupg && \
     mkdir -p /nginx/tmp && \
+    mkdir -p /nginx/etc/conf.d && \
     tar xzf nginx-${NGINX_VERSION}.tar.gz && \
     cd nginx-${NGINX_VERSION} && \
     ./configure \
@@ -57,8 +60,12 @@ RUN addgroup -S nginx && \
     make install && \
     cd .. && \
     rm -fr nginx-* && \
+    chmod +x /entrypoint.sh && \
     apk del --purge $buildDeps
+
+COPY conf/nginx.conf /nginx/etc
 
 EXPOSE 80 443
 
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["nginx" ,"-g" ,"daemon off;"]
