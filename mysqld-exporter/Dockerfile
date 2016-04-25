@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV MYSQLD_EXPORTER_VERSION=0.7.1
+ENV MYSQLD_EXPORTER_VERSION=0.8.0
 
 RUN addgroup -S prometheus && adduser -S -G prometheus prometheus && \
     buildDeps="git go make" && \
