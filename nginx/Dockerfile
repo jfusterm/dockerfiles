@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV NGINX_VERSION=1.9.14
+ENV NGINX_VERSION=1.9.15
 
 COPY conf/entrypoint.sh /
 
