@@ -2,9 +2,10 @@ FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
 ENV HAPROXY_MAJOR=1.6 \
-    HAPROXY_VERSION=1.6.4
+    HAPROXY_VERSION=1.6.5
 
-RUN buildDeps="build-base pcre-dev linux-headers openssl-dev" && \
+RUN set -ex && \
+    buildDeps="build-base pcre-dev linux-headers openssl-dev" && \
     apk add --no-cache $buildDeps pcre libpcre32 libssl1.0 && \
     wget http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/haproxy-${HAPROXY_VERSION}.tar.gz && \
     wget http://www.haproxy.org/download/${HAPROXY_MAJOR}/src/haproxy-${HAPROXY_VERSION}.tar.gz.md5 && \
