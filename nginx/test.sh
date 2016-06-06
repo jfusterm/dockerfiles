@@ -13,7 +13,7 @@ for APP in curl docker; do
     fi
 done
 
-docker run -d -P --name $CONTAINER $IMAGE:$VERSION 
+docker run --disable-content-trust -d -P --name $CONTAINER $IMAGE:$VERSION 
 
 HTTP_PORT=$(docker inspect --format='{{(index (index .NetworkSettings.Ports "80/tcp") 0).HostPort}}' $CONTAINER)
 HTTPS_PORT=$(docker inspect --format='{{(index (index .NetworkSettings.Ports "443/tcp") 0).HostPort}}' $CONTAINER)
