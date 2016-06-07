@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV PROMETHEUS_VERSION=0.18.0
+ENV PROMETHEUS_VERSION=0.19.2
 
 RUN addgroup -S prometheus && adduser -S -G prometheus prometheus && \
     buildDeps="git go bash make" && \
