@@ -35,6 +35,7 @@ RUN set -ex && \
     grafana-cli plugins install grafana-clock-panel && \
     grafana-cli plugins install raintank-worldping-app && \
     grafana-cli plugins install grafana-worldmap-panel && \
+    grafana-cli plugins install percona-percona-app && \
     grafana-cli plugins update-all && \
     go clean -i -r && \
     apk del --purge $buildDeps && \
