@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV GRAFANA_VERSION=v3.0.3
+ENV GRAFANA_VERSION=v3.0.4
 
 RUN set -ex && \
     addgroup -S grafana && \ 
