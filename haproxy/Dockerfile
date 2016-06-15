@@ -26,4 +26,5 @@ EXPOSE 80 443
 
 VOLUME ["/haproxy"]
 
-CMD ["haproxy","-f","/haproxy/etc/haproxy.cfg"]
+ENTRYPOINT ["haproxy"]
+CMD ["-f","/haproxy/etc/haproxy.cfg"]
