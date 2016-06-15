@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
 ENV GRAFANA_VERSION=v3.0.4
