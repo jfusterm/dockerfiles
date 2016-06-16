@@ -1,12 +1,12 @@
-FROM jfusterm/alpine-glibc:3.3
+FROM jfusterm/alpine-glibc:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV CONFLUENCE_VERSION=5.9.6 \
-    MYSQL_CONNECTOR_VERSION=5.1.38
+ENV CONFLUENCE_VERSION=5.10.0 \
+    MYSQL_CONNECTOR_VERSION=5.1.39
 
 COPY response.varfile /
 
-RUN set -xe && \
+RUN set -ex && \
     apk add --no-cache gzip openjdk8-jre-base curl bash && \
     mkdir /atlassian && \
     curl -Lo confluence.bin https://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${CONFLUENCE_VERSION}-x64.bin && \
@@ -16,7 +16,8 @@ RUN set -xe && \
     cp mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}-bin.jar /atlassian/confluence/confluence/WEB-INF/lib/ && \
     rm -fr mysql-* *.bin *.log *.varfile && \
     apk del --purge curl && \
-    addgroup -S confluence && adduser -S -G confluence confluence && \
+    addgroup -S confluence && \
+    adduser -S -G confluence confluence && \
     chown -R confluence:confluence /atlassian
 
 USER confluence
