@@ -1,9 +1,11 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV JENKINS_VERSION=1.652
+ENV JENKINS_VERSION=1.658
 
-RUN addgroup -S jenkins && adduser -S -G jenkins jenkins && \
+RUN set -ex && \
+    addgroup -S jenkins && \
+    adduser -S -G jenkins jenkins && \
     apk add --no-cache openjdk8-jre openssl ttf-dejavu && \
     mkdir -p /jenkins/plugins && \
     wget -O /jenkins/jenkins.war http://mirrors.jenkins-ci.org/war/${JENKINS_VERSION}/jenkins.war && \
