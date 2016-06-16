@@ -1,9 +1,11 @@
-FROM alpine:3.3
+FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV PROMETHEUS_VERSION=0.19.2
+ENV PROMETHEUS_VERSION=0.20.0
 
-RUN addgroup -S prometheus && adduser -S -G prometheus prometheus && \
+RUN set -ex && \
+    addgroup -S prometheus && \
+    adduser -S -G prometheus prometheus && \
     buildDeps="git go bash make" && \
     apk add --no-cache $buildDeps openssl ca-certificates && \
     export GOPATH=/go && \
@@ -17,7 +19,7 @@ RUN addgroup -S prometheus && adduser -S -G prometheus prometheus && \
     apk del --purge $buildDeps && \
     cd / && \
     rm -rf go && \
-    chown -R prometheus:prometheus prometheus
+    chown -R prometheus:prometheus /prometheus
 
 USER prometheus 
 
