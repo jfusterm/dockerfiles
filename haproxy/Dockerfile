@@ -22,8 +22,6 @@ RUN set -ex && \
     rm -fr haproxy-* && \
     mkdir -p /haproxy/etc
 
-EXPOSE 80 443
-
 VOLUME ["/haproxy"]
 
 ENTRYPOINT ["haproxy"]
