@@ -1,12 +1,12 @@
-FROM jfusterm/alpine-glibc:3.3
+FROM jfusterm/alpine-glibc:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV JIRA_VERSION=7.1.2 \
-    MYSQL_CONNECTOR_VERSION=5.1.38
+ENV JIRA_VERSION=7.1.7 \
+    MYSQL_CONNECTOR_VERSION=5.1.39
 
 COPY response.varfile /
 
-RUN set -xe && \
+RUN set -ex && \
     apk add --no-cache gzip openjdk8-jre-base curl bash && \
     mkdir /atlassian && \
     curl -Lo jira.bin https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-${JIRA_VERSION}-jira-${JIRA_VERSION}-x64.bin && \
@@ -16,7 +16,8 @@ RUN set -xe && \
     cp mysql-connector-java-${MYSQL_CONNECTOR_VERSION}/mysql-connector-java-${MYSQL_CONNECTOR_VERSION}-bin.jar /atlassian/jira/lib/ && \
     rm -fr mysql-* *.bin *.log *.varfile && \
     apk del --purge curl && \
-    addgroup -S jira && adduser -S -G jira jira && \
+    addgroup -S jira && \
+    adduser -S -G jira jira && \
     chown -R jira:jira /atlassian
 
 USER jira
