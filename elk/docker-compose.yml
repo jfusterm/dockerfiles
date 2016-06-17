@@ -1,0 +1,42 @@
+version: '2'
+services:
+  kibana:
+    image: jfusterm/kibana
+    container_name: kibana
+    restart: unless-stopped
+    ports:
+    - "5601:5601"
+    volumes:
+    - /kibana
+    links:
+    - elasticsearch
+    environment:
+    - ELASTICSEARCH=elasticsearch
+    depends_on:
+    - elasticsearch
+    - logstash
+  elasticsearch:
+    image: jfusterm/elasticsearch
+    container_name: elasticsearch
+    restart: unless-stopped
+    ports:
+    - "9200:9200"
+    - "9300:9300"
+    volumes:
+    - /elastic
+  logstash:
+    image: jfusterm/logstash
+    container_name: logstash
+    restart: unless-stopped
+    depends_on:
+    - elasticsearch
+    ports:
+    - "5044:5044"
+    volumes:
+    - /logstash
+    links:
+    - elasticsearch
+    environment:
+    - ELASTICSEARCH=elasticsearch
+    depends_on:
+    - elasticsearch
