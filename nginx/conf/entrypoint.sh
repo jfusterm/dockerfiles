@@ -31,8 +31,8 @@ EOF
 
 gen_upstream(){ 
    echo "upstream phpfpm {" 
-   for ip in $(echo $PHPFPM | sed 's/,/ /g' );do
-       echo "    server $ip:9000;"
+   for server in $(echo $PHPFPM | sed 's/,/ /g' );do
+       echo "    server $server;"
    done
    echo "}"    
 }
