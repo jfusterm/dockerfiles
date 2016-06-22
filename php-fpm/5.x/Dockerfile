@@ -14,6 +14,7 @@ RUN set -ex && \
     echo "${PHP_SHA256}  php.tar.xz" | sha256sum -c && \
     mkdir -p /php/conf.d && \
     mkdir -p /php/etc/php-fpm.d && \
+    mkdir /php/log && \
     tar xJf php.tar.xz && \
     cd php-${PHP_VERSION} && \
     ./configure \
