@@ -1,7 +1,7 @@
 .PHONY: build tag test push clean all
 
 IMAGE = jfusterm/nginx
-VERSION = 1.11.2
+VERSION := $(shell grep NGINX_VERSION= Dockerfile | sed -nr 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')  
 
 default: build
 
