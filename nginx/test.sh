@@ -3,7 +3,7 @@
 set -e
 
 IMAGE=$(awk '/IMAGE\ \=/ {print $3}' Makefile)
-VERSION=$(awk '/VERSION\ \=/ {print $3}' Makefile)
+VERSION=$(grep NGINX_VERSION= Dockerfile | sed -nr 's/^[^0-9]*(([0-9]+\.)*[0-9]+).*/\1/p')
 CONTAINER="nginx_$(date +"%N")"
 
 for APP in curl docker; do
