@@ -1,7 +1,7 @@
 .PHONY: build tag test push clean all
 
 IMAGE = jfusterm/nginx
-VERSION = 1.11.1
+VERSION = 1.11.2
 
 default: build
 
