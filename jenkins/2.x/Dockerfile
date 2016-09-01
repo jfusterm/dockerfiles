@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV JENKINS_VERSION=2.9
+ENV JENKINS_VERSION=2.20
 
 RUN set -ex && \
     addgroup -S jenkins && \
