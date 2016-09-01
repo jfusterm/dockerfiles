@@ -1,8 +1,8 @@
 FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV VAULT_VERSION=0.6.0 \
-    VAULT_SHA256=283b4f591da8a4bf92067bf9ff5b70249f20705cc963bea96ecaf032911f27c2 \
+ENV VAULT_VERSION=0.6.1 \
+    VAULT_SHA256=4f248214e4e71da68a166de60cc0c1485b194f4a2197da641187b745c8d5b8be \
     PATH=$PATH:/vault/bin
 
 RUN apk add --no-cache ca-certificates curl && \
