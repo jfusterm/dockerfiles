@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV LOGSTASH_VERSION=2.3.3 \
+ENV LOGSTASH_VERSION=2.4.0 \
     PATH=$PATH:/logstash/bin/
 
 COPY conf/entrypoint.sh /
