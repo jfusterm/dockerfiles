@@ -2,7 +2,7 @@ FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
 ENV HAPROXY_MAJOR=1.6 \
-    HAPROXY_VERSION=1.6.5
+    HAPROXY_VERSION=1.6.9
 
 RUN set -ex && \
     buildDeps="build-base pcre-dev linux-headers openssl-dev" && \
@@ -16,8 +16,8 @@ RUN set -ex && \
         USE_PCRE=1 \
         USE_OPENSSL=1 \
         USE_ZLIB=1 \
-        USE_LIBCRYPT=1 \
-        install && \
+        USE_LIBCRYPT=1 && \
+    make -C haproxy-${HAPROXY_VERSION} install && \
     apk del --purge $buildDeps && \
     rm -fr haproxy-* && \
     mkdir -p /haproxy/etc
