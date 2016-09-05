@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV PROMETHEUS_VERSION=v1.0.1
+ENV PROMETHEUS_VERSION=v1.1.0
 
 RUN set -ex && \
     addgroup -S prometheus && \
