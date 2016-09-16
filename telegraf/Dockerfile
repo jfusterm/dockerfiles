@@ -1,8 +1,8 @@
-FROM jfusterm/alpine-glibc:3.3
+FROM jfusterm/alpine-glibc:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV TELEGRAF_VERSION=0.13.0 \
-    TELEGRAF_MD5=e53b1f3a9ad42bc6c53dde8f207c2e31
+ENV TELEGRAF_VERSION=1.0.0 \
+    TELEGRAF_MD5=c3e2562a81dec8ecc9696b263d05d249
 
 RUN set -ex && \
     addgroup -S telegraf && \
