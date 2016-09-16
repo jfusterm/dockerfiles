@@ -1,8 +1,8 @@
-FROM jfusterm/alpine-glibc:3.3
+FROM jfusterm/alpine-glibc:3.4
 MAINTAINER "Joan Fuster" <joan.fuster@gmail.com>
 
-ENV INFLUXDB_VERSION=0.13.0 \
-    INFLUXDB_MD5=4cf99debb5315fbbb26166506807d965
+ENV INFLUXDB_VERSION=1.0.0 \
+    INFLUXDB_MD5=504f8e9c9239689bc67edae0edd7ea3b
 
 RUN set -ex && \
     addgroup -S influxdb && \
